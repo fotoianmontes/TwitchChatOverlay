@@ -93,5 +93,5 @@ client.on("message", (channel, userstate, message, self) =>{
 
 
     }
-
+    window.scrollTo(0, document.body.scrollHeight);
 })
