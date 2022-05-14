@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
+
+.container{
+    display:flex;
+    flex-direction: column;
+    gap: 20px;
+}
+#othersMessage{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #F2A7BB;
+    max-width: 70vw;
+    padding: 15px 20px;
+    border-radius: 50px 10px 30px 50px;
+    font-family: 'Macondo', cursive;
+    font-size: 34px;;
+}
+
+#ownMessage{
+    display: flex;
+    align-self: flex-end;
+    flex-direction: row;
+    gap: 10px;
+    background-color: #CDC1D9;
+    max-width: 70vw;
+    padding: 15px 20px;
+    border-radius: 50px 10px 30px 50px;
+    font-family: 'Macondo', cursive;
+    font-size: 34px;;
+}
+
+.displayName{
+    color: #BF046B;
+}
+
+.message{
+    color: #212126;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+img{
+    height: 60px;
+    border-radius: 50%;
+    border: 5px solid white;
+}
