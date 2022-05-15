@@ -1,4 +1,4 @@
-const CHANNEL_NAME = "auronplay";
+const CHANNEL_NAME = "illojuan";
 const COMMANDS = ["$clear"]
 const client = new tmi.Client({
     options: { debug: false },

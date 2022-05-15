@@ -1,4 +1,4 @@
-const CHANNEL_NAME = "tyrecgames";
+const CHANNEL_NAME = "illojuan";
 const MI_PANITA = "kristinavc";
 const imgSource = ["assets/idimage/0.png",
                     "assets/idimage/1.png",
@@ -41,7 +41,7 @@ client.on("message", (channel, userstate, message, self) =>{
     console.log(userBadges);
     if (userNick === CHANNEL_NAME) {
         var channelImg = document.createElement("img");
-        channelImg.src = "assets/Tyrec.png";
+        channelImg.src = `assets/${CHANNEL_NAME}.png`;
         var oneMessage = document.createElement("span");
         var displayNameContainer = document.createElement("div");
         var displayName = document.createElement("span")
@@ -83,38 +83,89 @@ client.on("message", (channel, userstate, message, self) =>{
     } else {
         if (userNick === MI_PANITA) {
             var panitaImg = document.createElement("img");
-            panitaImg.src = "assets/KristinaVC.png"
+            panitaImg.src = `assets/${MI_PANITA}.png`;
             var oneMessage = document.createElement("span");
-            var displayNameContainer = document.createElement("span");
+            var displayNameContainer = document.createElement("div");
+            var displayName = document.createElement("span")
             var messageContainer = document.createElement("div");
+            var badgesContainer = document.createElement("div");
+            badgesContainer.className = "badgesContainer";
             oneMessage.className = "oneMessage";
+            panitaImg.className = "profilePic";
             oneMessage.id = "othersMessage";
-            displayNameContainer.className = "displayName";
+            displayNameContainer.className = "displayNameContainer";
+            displayName.className = "displayName"
             messageContainer.className = "message";
-            displayNameContainer.innerHTML = (`${userDisplayName}`)
-            messageContainer.innerHTML = (message)
-            
+            displayName.innerHTML = (`${userDisplayName}`);
+            messageContainer.innerHTML = (message);
+
+            userBadges.forEach(index => {
+                let badge = index;
+                if (badge === "broadcaster") {
+                    var badgeElement = document.createElement("img")
+                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1"
+                    badgeElement.className = "badge"
+                    badgesContainer.appendChild(badgeElement)
+                } else if (badge === "premium") {
+                    var badgeElement = document.createElement("img")
+                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
+                    badgeElement.className = "badge"
+                    badgesContainer.appendChild(badgeElement)
+                }{
+
+                }
+            });
+
             containerSelector.appendChild(oneMessage);
             oneMessage.appendChild(panitaImg);
             oneMessage.appendChild(displayNameContainer);
-            oneMessage.appendChild(messageContainer);
+            displayNameContainer.appendChild(displayName)
+            displayNameContainer.appendChild(badgesContainer)
+            oneMessage.appendChild(messageContainer);          
         } else{
             var oneImg = document.createElement("img");
             oneImg.src = imgSource[userID[1]];;
             var oneMessage = document.createElement("span");
-            var displayNameContainer = document.createElement("span");
+            var displayNameContainer = document.createElement("div");
+            var displayName = document.createElement("span")
             var messageContainer = document.createElement("div");
+            var badgesContainer = document.createElement("div");
+            badgesContainer.className = "badgesContainer";
             oneMessage.className = "oneMessage";
+            oneImg.className = "profilePic";
             oneMessage.id = "othersMessage";
-            displayNameContainer.className = "displayName";
+            displayNameContainer.className = "displayNameContainer";
+            displayName.className = "displayName"
             messageContainer.className = "message";
-            displayNameContainer.innerHTML = (`${userDisplayName}`)
-            messageContainer.innerHTML = (message)
+            displayName.innerHTML = (`${userDisplayName}`);
+            messageContainer.innerHTML = (message);
+
+            userBadges.forEach(index => {
+                let badge = index;
+                if (badge === "broadcaster") {
+                    var badgeElement = document.createElement("img")
+                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1"
+                    badgeElement.className = "badge"
+                    badgesContainer.appendChild(badgeElement)
+                } else if (badge === "premium") {
+                    var badgeElement = document.createElement("img")
+                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
+                    badgeElement.className = "badge"
+                    badgesContainer.appendChild(badgeElement)
+                }{
+
+                }
+            });
 
             containerSelector.appendChild(oneMessage);
             oneMessage.appendChild(oneImg);
             oneMessage.appendChild(displayNameContainer);
+            displayNameContainer.appendChild(displayName)
+            displayNameContainer.appendChild(badgesContainer)
             oneMessage.appendChild(messageContainer);
+
+
+
         };
 
 
