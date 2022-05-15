@@ -15,7 +15,7 @@
     padding: 15px 20px;
     border-radius: 50px 10px 30px 50px;
     font-family: 'Macondo', cursive;
-    font-size: 34px;;
+    font-size: 32px;;
 }
 
 #ownMessage{
@@ -28,7 +28,7 @@
     padding: 15px 20px;
     border-radius: 50px 10px 30px 50px;
     font-family: 'Macondo', cursive;
-    font-size: 34px;;
+    font-size: 32px;;
 }
 
 .displayName{
@@ -42,8 +42,21 @@
     overflow: hidden;
 }
 
-img{
+.profilePic{
     height: 60px;
     border-radius: 50%;
     border: 5px solid white;
+    box-shadow: 1px 3px 10px 4px  #2121267a;
+}
+
+.displayNameContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.badgesContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }

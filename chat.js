@@ -36,23 +36,49 @@ client.on("message", (channel, userstate, message, self) =>{
     const isMod = userstate?.mod;
     const messageType = userstate["message-type"];
     const userID = userstate["user-id"];
-    
+    const userBadges = Object.keys(userstate.badges);
+
+    console.log(userBadges);
     if (userNick === CHANNEL_NAME) {
         var channelImg = document.createElement("img");
         channelImg.src = "assets/Tyrec.png";
         var oneMessage = document.createElement("span");
-        var displayNameContainer = document.createElement("span");
+        var displayNameContainer = document.createElement("div");
+        var displayName = document.createElement("span")
         var messageContainer = document.createElement("div");
+        var badgesContainer = document.createElement("div");
+        badgesContainer.className = "badgesContainer";
         oneMessage.className = "oneMessage";
+        channelImg.className = "profilePic";
         oneMessage.id = "ownMessage";
-        displayNameContainer.className = "displayName";
+        displayNameContainer.className = "displayNameContainer";
+        displayName.className = "displayName"
         messageContainer.className = "message";
-        displayNameContainer.innerHTML = (`${userDisplayName}`);
+        displayName.innerHTML = (`${userDisplayName}`);
         messageContainer.innerHTML = (message);
+
+        userBadges.forEach(index => {
+            let badge = index;
+            if (badge === "broadcaster") {
+                var badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement)
+            } else if (badge === "premium") {
+                var badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement)
+            }{
+
+            }
+        });
 
         containerSelector.appendChild(oneMessage);
         oneMessage.appendChild(channelImg);
         oneMessage.appendChild(displayNameContainer);
+        displayNameContainer.appendChild(displayName)
+        displayNameContainer.appendChild(badgesContainer)
         oneMessage.appendChild(messageContainer);
     } else {
         if (userNick === MI_PANITA) {
