@@ -1,5 +1,5 @@
-const CHANNEL_NAME = "illojuan";
-const MI_PANITA = "kristinavc";
+const CHANNEL_NAME = "kristinavc";
+const MI_PANITA = "tyrecgames";
 const imgSource = ["assets/idimage/0.png",
                     "assets/idimage/1.png",
                     "assets/idimage/2.png",
@@ -38,7 +38,6 @@ client.on("message", (channel, userstate, message, self) =>{
     const userID = userstate["user-id"];
     const userBadges = Object.keys(userstate.badges);
 
-    console.log(userBadges);
     if (userNick === CHANNEL_NAME) {
         var channelImg = document.createElement("img");
         channelImg.src = `assets/${CHANNEL_NAME}.png`;

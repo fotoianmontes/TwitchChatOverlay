@@ -1,4 +1,4 @@
-const CHANNEL_NAME = "illojuan";
+const CHANNEL_NAME = "kristinavc";
 const COMMANDS = ["$clear"]
 const client = new tmi.Client({
     options: { debug: false },
@@ -12,8 +12,6 @@ client.on("message", (channel, userstate, message, self) =>{
 
     const isMod = userstate?.mod;
     const userNick = userstate.username;
-
-    console.log (isMod, CHANNEL_NAME, userNick)
 
     if (isMod || userNick === CHANNEL_NAME) {
         if (message === COMMANDS[0]) {
