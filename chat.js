@@ -97,7 +97,7 @@ client.on("message", (channel, userstate, message, self) =>{
             messageContainer.className = "message";
             displayName.innerHTML = (`${userDisplayName}`);
             messageContainer.innerHTML = (message);
-
+console.log(userstate)
             userBadges.forEach(index => {
                 let badge = index;
                 if (badge === "broadcaster") {
@@ -110,8 +110,11 @@ client.on("message", (channel, userstate, message, self) =>{
                     badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
                     badgeElement.className = "badge"
                     badgesContainer.appendChild(badgeElement)
-                }{
-
+                } else if (badge === "moderator") {
+                    var badgeElement = document.createElement("img")
+                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1"
+                    badgeElement.className = "badge"
+                    badgesContainer.appendChild(badgeElement)
                 }
             });
 
