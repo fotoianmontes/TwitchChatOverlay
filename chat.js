@@ -1,15 +1,15 @@
-const CHANNEL_NAME = "illojuan";
-const MI_PANITA = "kristinavc";
-const imgSource = ["assets/idimage/0.png",
-                    "assets/idimage/1.png",
-                    "assets/idimage/2.png",
-                    "assets/idimage/3.png",
-                    "assets/idimage/4.png",
-                    "assets/idimage/5.png",
-                    "assets/idimage/6.png",
-                    "assets/idimage/7.png",
-                    "assets/idimage/8.png",
-                    "assets/idimage/9.png"];
+import {CHANNEL_NAME, MI_PANITA, BOT, COMMANDS,} from './data.js';
+
+const imgSource = ["assets/idimage/0.jpg",
+                    "assets/idimage/1.jpg",
+                    "assets/idimage/2.jpg",
+                    "assets/idimage/3.jpg",
+                    "assets/idimage/4.jpg",
+                    "assets/idimage/5.jpg",
+                    "assets/idimage/6.jpg",
+                    "assets/idimage/7.jpg",
+                    "assets/idimage/8.jpg",
+                    "assets/idimage/9.jpg"];
 
 const containerSelector = document.querySelector(".container");
 
@@ -38,10 +38,16 @@ client.on("message", (channel, userstate, message, self) =>{
     const userID = userstate["user-id"];
     const userBadges = Object.keys(userstate.badges);
 
-    console.log(userBadges);
+        if (userDisplayName.length > 5) {
+           var userNickFormatted = `${userDisplayName.slice(0,5)}...`;
+    } else {
+        var userNickFormatted = userDisplayName;
+    }
+
+
     if (userNick === CHANNEL_NAME) {
         var channelImg = document.createElement("img");
-        channelImg.src = `assets/${CHANNEL_NAME}.png`;
+        channelImg.src = `assets/${CHANNEL_NAME}.jpg`;
         var oneMessage = document.createElement("span");
         var displayNameContainer = document.createElement("div");
         var displayName = document.createElement("span")
@@ -54,8 +60,55 @@ client.on("message", (channel, userstate, message, self) =>{
         displayNameContainer.className = "displayNameContainer";
         displayName.className = "displayName"
         messageContainer.className = "message";
-        displayName.innerHTML = (`${userDisplayName}`);
+        displayName.innerHTML = (`${userNickFormatted}`);
         messageContainer.innerHTML = (message);
+
+        userBadges.forEach(index => {
+            let badge = index;
+            if (badge === "broadcaster") {
+                let badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement);;
+                            return badgeElement;
+            } else if (badge === "premium") {
+                let badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement);;
+                            return badgeElement;
+            }else if (badge === "moderator") {
+                let badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement);
+            }
+        });
+
+        containerSelector.appendChild(oneMessage);
+        oneMessage.appendChild(channelImg);
+        oneMessage.appendChild(displayNameContainer);
+        displayNameContainer.appendChild(displayName)
+        displayNameContainer.appendChild(badgesContainer)
+        oneMessage.appendChild(messageContainer);
+    } else {
+        if (userNick === MI_PANITA) {
+            var panitaImg = document.createElement("img");
+            panitaImg.src = `assets/${MI_PANITA}.jpg`;
+            var oneMessage = document.createElement("span");
+            var displayNameContainer = document.createElement("div");
+            var displayName = document.createElement("span")
+            var messageContainer = document.createElement("div");
+            var badgesContainer = document.createElement("div");
+            badgesContainer.className = "badgesContainer";
+            oneMessage.className = "oneMessage";
+            panitaImg.className = "profilePic";
+            oneMessage.id = "othersMessage";
+            displayNameContainer.className = "displayNameContainer";
+            displayName.className = "displayName"
+            messageContainer.className = "message";
+            displayName.innerHTML = (`${userNickFormatted}`);
+            messageContainer.innerHTML = (message);
 
         userBadges.forEach(index => {
             let badge = index;
@@ -69,52 +122,13 @@ client.on("message", (channel, userstate, message, self) =>{
                 badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
                 badgeElement.className = "badge"
                 badgesContainer.appendChild(badgeElement)
-            }{
-
+            }else if (badge === "moderator") {
+                var badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement)
             }
         });
-
-        containerSelector.appendChild(oneMessage);
-        oneMessage.appendChild(channelImg);
-        oneMessage.appendChild(displayNameContainer);
-        displayNameContainer.appendChild(displayName)
-        displayNameContainer.appendChild(badgesContainer)
-        oneMessage.appendChild(messageContainer);
-    } else {
-        if (userNick === MI_PANITA) {
-            var panitaImg = document.createElement("img");
-            panitaImg.src = `assets/${MI_PANITA}.png`;
-            var oneMessage = document.createElement("span");
-            var displayNameContainer = document.createElement("div");
-            var displayName = document.createElement("span")
-            var messageContainer = document.createElement("div");
-            var badgesContainer = document.createElement("div");
-            badgesContainer.className = "badgesContainer";
-            oneMessage.className = "oneMessage";
-            panitaImg.className = "profilePic";
-            oneMessage.id = "othersMessage";
-            displayNameContainer.className = "displayNameContainer";
-            displayName.className = "displayName"
-            messageContainer.className = "message";
-            displayName.innerHTML = (`${userDisplayName}`);
-            messageContainer.innerHTML = (message);
-
-            userBadges.forEach(index => {
-                let badge = index;
-                if (badge === "broadcaster") {
-                    var badgeElement = document.createElement("img")
-                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1"
-                    badgeElement.className = "badge"
-                    badgesContainer.appendChild(badgeElement)
-                } else if (badge === "premium") {
-                    var badgeElement = document.createElement("img")
-                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
-                    badgeElement.className = "badge"
-                    badgesContainer.appendChild(badgeElement)
-                }{
-
-                }
-            });
 
             containerSelector.appendChild(oneMessage);
             oneMessage.appendChild(panitaImg);
@@ -137,25 +151,28 @@ client.on("message", (channel, userstate, message, self) =>{
             displayNameContainer.className = "displayNameContainer";
             displayName.className = "displayName"
             messageContainer.className = "message";
-            displayName.innerHTML = (`${userDisplayName}`);
+            displayName.innerHTML = (`${userNickFormatted}`);
             messageContainer.innerHTML = (message);
 
-            userBadges.forEach(index => {
-                let badge = index;
-                if (badge === "broadcaster") {
-                    var badgeElement = document.createElement("img")
-                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1"
-                    badgeElement.className = "badge"
-                    badgesContainer.appendChild(badgeElement)
-                } else if (badge === "premium") {
-                    var badgeElement = document.createElement("img")
-                    badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
-                    badgeElement.className = "badge"
-                    badgesContainer.appendChild(badgeElement)
-                }{
-
-                }
-            });
+        userBadges.forEach(index => {
+            let badge = index;
+            if (badge === "broadcaster") {
+                var badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement)
+            } else if (badge === "premium") {
+                var badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/bbbe0db0-a598-423e-86d0-f9fb98ca1933/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement)
+            }else if (badge === "moderator") {
+                var badgeElement = document.createElement("img")
+                badgeElement.src = "https://static-cdn.jtvnw.net/badges/v1/3267646d-33f0-4b17-b3df-f923a41db1d0/1"
+                badgeElement.className = "badge"
+                badgesContainer.appendChild(badgeElement)
+            }
+        });
 
             containerSelector.appendChild(oneMessage);
             oneMessage.appendChild(oneImg);

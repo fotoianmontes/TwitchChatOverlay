@@ -1,5 +1,5 @@
-const CHANNEL_NAME = "illojuan";
-const COMMANDS = ["$clear"]
+import {CHANNEL_NAME, MI_PANITA, BOT, COMMANDS, BADGE} from './data.js';
+
 const client = new tmi.Client({
     options: { debug: false },
     channels: [ CHANNEL_NAME ]
@@ -12,8 +12,6 @@ client.on("message", (channel, userstate, message, self) =>{
 
     const isMod = userstate?.mod;
     const userNick = userstate.username;
-
-    console.log (isMod, CHANNEL_NAME, userNick)
 
     if (isMod || userNick === CHANNEL_NAME) {
         if (message === COMMANDS[0]) {
